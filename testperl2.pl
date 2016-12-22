@@ -3,16 +3,16 @@
 use DBI;
 use strict;
 
-my $driver = "oracle";
-my $database = "lappo";
+my $driver = "ORACLE";
+my $database = "ROOT";
 my $dsn = "DBI:$driver:database=$database;host=localhost:port=3306";
-my $userid = "root";
+my $userid = "PERLSCRIPT";
 my $password = "Puskas54";
 
 
 my $dbh = DBI->connect($dsn, $userid, $password ) or die $DBI::errstr;
 
-my $sth = $dbh->prepare("select * FROM a");
+my $sth = $dbh->prepare("select sysdate FROM dual");
 $sth->execute() or die $DBI::errstr;
 print "Number of MDNs found :" + $sth->rows;
 while (my @row = $sth->fetchrow_array()) {
